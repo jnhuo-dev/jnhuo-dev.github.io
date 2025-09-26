@@ -1,115 +1,224 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Junho Park — Portfolio</title>
-    <meta name="description" content="Revit Add-in Developer → Frontend Learner. Spatial branding & VMD interests." />
-    <meta property="og:title" content="Junho Park — Portfolio" />
-    <meta property="og:description" content="Revit Add-in Developer → Frontend Learner" />
-    <meta property="og:type" content="website" />
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="main.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 웹사이트 타이틀 -->
+  <title>Park Junho's Portfolio</title>
+  <meta name="description" content="디자이너 / VMD / 브랜딩 포트폴리오" />
+  <style>
+    /* ===== 기본 설정 ===== */
+    :root{
+      --bg: #0b0c0f;
+      --text: #e6e7ea;
+      --muted: #a8acb8;
+      --card: #13151a;
+      --accent: #7dd3fc; /* 강조 색: 하늘 */
+      --accent-strong: #38bdf8;
+      --border: #232632;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#ffffff; --text:#0b0c0f; --muted:#4b5563; --card:#f8fafc; --border:#e5e7eb; --accent:#0ea5e9; --accent-strong:#0284c7; }
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, Apple SD Gothic Neo, "Malgun Gothic", Arial, sans-serif; color:var(--text); background:var(--bg); line-height:1.6; }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    .container{ width:min(1100px, 92%); margin-inline:auto; }
+    .section{ padding:64px 0; }
+    .tag{ display:inline-block; padding:4px 10px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted); }
+    .btn{ display:inline-block; padding:10px 16px; border-radius:10px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,0.05), transparent); }
+    .btn-accent{ border-color:transparent; background:var(--accent); color:#0b0c0f; font-weight:700; }
+
+    /* ===== 헤더/내비 ===== */
+    header{ position:sticky; top:0; z-index:50; background:rgba(11,12,15,0.7); backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid var(--border); }
+    @media (prefers-color-scheme: light){ header{ background:rgba(255,255,255,0.8); } }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; }
+    .brand{ font-weight:800; letter-spacing:0.2px; }
+    nav a{ color:var(--muted); padding:8px 10px; border-radius:8px; }
+    nav a:hover{ color:var(--text); background:rgba(125,211,252,0.12); }
+    .menu-btn{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 12px; border-radius:8px; }
+    .menu{ display:flex; gap:2px; }
+    @media (max-width: 760px){
+      .menu-btn{ display:block; }
+      .menu{ display:none; flex-direction:column; position:absolute; left:0; right:0; top:56px; background:inherit; border-bottom:1px solid var(--border); padding:8px; }
+      .menu.open{ display:flex; }
+    }
+
+    /* ===== 히어로 ===== */
+    .hero{ padding:96px 0 72px; display:grid; grid-template-columns: 1.2fr 1fr; gap:32px; align-items:center; }
+    .hero h1{ font-size: clamp(28px, 3vw, 44px); line-height:1.2; margin:0 0 16px; }
+    .hero p{ color:var(--muted); margin:0 0 24px; }
+    .hero-card{ background:var(--card); border:1px solid var(--border); border-radius:18px; padding:18px; }
+    .hero-img{ aspect-ratio: 4/3; background:linear-gradient(180deg, #1f2937, #0b0c0f); border-radius:12px; display:grid; place-items:center; color:#cbd5e1; font-size:14px; }
+    @media (max-width: 960px){ .hero{ grid-template-columns:1fr; } }
+
+    /* ===== 프로젝트 카드 ===== */
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); }
+    .card{ grid-column: span 4; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; transition: transform .15s ease, box-shadow .15s ease; }
+    .card:hover{ transform: translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.18); }
+    .card h3{ margin:10px 0 6px; font-size:18px; }
+    .card p{ margin:0; color:var(--muted); font-size:14px; }
+    .thumb{ aspect-ratio: 16 / 9; border-radius:10px; background:#0f172a; border:1px dashed var(--border); display:grid; place-items:center; color:#94a3b8; font-size:12px; }
+    @media (max-width: 1000px){ .card{ grid-column: span 6; } }
+    @media (max-width: 640px){ .card{ grid-column: span 12; } }
+
+    /* ===== 섹션 타이틀 ===== */
+    .section h2{ font-size: clamp(22px, 2.2vw, 32px); margin:0 0 10px; }
+    .section .lead{ color:var(--muted); margin:0 0 22px; }
+
+    /* ===== about / skills ===== */
+    .about{ display:grid; grid-template-columns: 1.1fr 1fr; gap:24px; }
+    .about .box{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; }
+    .skills{ display:flex; flex-wrap:wrap; gap:8px; }
+    .pill{ padding:6px 10px; background:rgba(125,211,252,0.12); border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--accent-strong); }
+    @media (max-width: 900px){ .about{ grid-template-columns:1fr; } }
+
+    /* ===== 푸터 ===== */
+    footer{ border-top:1px solid var(--border); padding:32px 0 48px; color:var(--muted); font-size:14px; }
+  </style>
 </head>
-
 <body>
-    <a class="skip" href="#main">본문 바로가기</a>
+  <header>
+    <!-- div는 의미(세맨틱)가 없는 ‘그룹/레이아웃용 박스 -->
+    <!-- 스타일을 묶거나 JS로 다루기 위한 훅(hook) 역할 -->
+    <div class="container nav">
+      <div class="brand">Park Junho</div>
+      <button class="menu-btn" aria-expanded="false" aria-controls="site-menu">메뉴</button>
+      <nav id="site-menu" class="menu" aria-label="주요 메뉴">
+        <a href="#work">작업물</a>
+        <a href="#about">소개</a>
+        <a href="#contact">연락처</a>
+        <a href="#resume">이력서</a>
+      </nav>
+    </div>
+  </header>
 
+  <main>
+    <!-- Hero -->
+    <section class="container hero">
+      <div>
+        <span class="tag">브랜딩 · VMD · 그래픽</span>
+        <h1>공간과 그래픽을 잇는 디자이너<br/>나만의 포트폴리오</h1>
+        <p>리테일 브랜딩, VMD, 전시 그래픽 작업들을 선별해 소개합니다. 간결한 설명과 실물 적용 사진 중심으로 정리했어요.</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a class="btn btn-accent" href="#work">작업 보러가기</a>
+          <a class="btn" href="#contact">문의하기</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-img">대표 이미지(960×720) 배치</div>
+      </div>
+    </section>
 
-    <header class="site-header container">
-        <nav class="nav">
-            <a class="logo" href="#">JP</a>
-            <button class="nav__toggle" aria-expanded="false" aria-controls="menu">Menu</button>
-            <ul id="menu" class="nav__menu">
-                <li><a href="#work">Work</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button id="themeToggle" class="btn-ghost" aria-pressed="false">🌗</button></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Work -->
+    <section id="work" class="section">
+      <div class="container">
+        <h2>작업물</h2>
+        <p class="lead">실제 매장/전시 적용 사진과 결과물을 중심으로 최대 6~9개만 엄선해 보여주세요.</p>
 
-
-    <main id="main">
-        <section class="hero container reveal">
-            <h1>Junho Park</h1>
-            <p class="lead">Revit Add-in Developer · <strong>Frontend Learner</strong><br />VMD · Spatial Branding ·
-                Computational Design</p>
-            <div class="hero__cta">
-                <a class="btn" href="#work">View Work</a>
-                <a class="btn-ghost" href="#about">About me</a>
+        <div class="grid">
+          <!-- 프로젝트 카드 예시 1 -->
+          <article class="card" aria-labelledby="p1-title">
+            <div class="thumb">1200×675 썸네일</div>
+            <h3 id="p1-title">PLUX 인스토어 브랜딩 리뉴얼</h3>
+            <p>ISP, POP, 키비주얼, 매장 시뮬레이션. 파일럿 매장 매출 +3.8%에 기여.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#VMD</a><a class="tag" href="#">#브랜딩</a><a class="tag" href="#">#리테일</a>
             </div>
-        </section>
-
-
-        <section id="work" class="container section reveal">
-            <h2>Selected Work</h2>
-            <div class="grid">
-                <!-- 카드 예시 1 -->
-                <article class="card">
-                    <img src="https://picsum.photos/640/400?random=1" alt="Project thumbnail" />
-                    <div class="card__body">
-                        <h3>PLUX Visual Upgrade</h3>
-                        <p>PB 브랜드 리브랜딩 콘셉트. ISP · POP · KV · 시뮬레이션.</p>
-                        <a class="btn-link" href="#">Case study →</a>
-                    </div>
-                </article>
-                <!-- 카드 예시 2 -->
-                <article class="card">
-                    <img src="https://picsum.photos/640/400?random=2" alt="Project thumbnail" />
-                    <div class="card__body">
-                        <h3>Rigid Frame Bridge Add-in</h3>
-                        <p>Revit API · WPF MVVM · 자동화 스위트(암거/교대/보강근).</p>
-                        <a class="btn-link" href="#">Docs →</a>
-                    </div>
-                </article>
-                <!-- 카드 예시 3 -->
-                <article class="card">
-                    <img src="https://picsum.photos/640/400?random=3" alt="Project thumbnail" />
-                    <div class="card__body">
-                        <h3>Spatial Branding Posters</h3>
-                        <p>전시/그래픽 포스터 셀렉션 — A2/A3 시리즈.</p>
-                        <a class="btn-link" href="#">Gallery →</a>
-                    </div>
-                </article>
+          </article>
+          <!-- 프로젝트 카드 예시 2 -->
+          <article class="card" aria-labelledby="p2-title">
+            <div class="thumb">1200×675 썸네일</div>
+            <h3 id="p2-title">세라믹 리빙 브랜드 아이덴티티</h3>
+            <p>로고타입·패키지·쇼룸 그래픽 가이드.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#브랜딩</a><a class="tag" href="#">#패키지</a>
             </div>
-        </section>
+          </article>
+          <!-- 프로젝트 카드 예시 3 -->
+          <article class="card" aria-labelledby="p3-title">
+            <div class="thumb">1200×675 썸네일</div>
+            <h3 id="p3-title">시즌 키비주얼&매장 헤드 그래픽</h3>
+            <p>포스터·헤드·대면 그래픽 통합 리뉴얼. 적용 매장 50+.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#그래픽</a><a class="tag" href="#">#VMD</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2>소개</h2>
+        <div class="about">
+          <div class="box">
+            <p><strong>안녕하세요! 공간과 그래픽을 연결하는 디자이너</strong>입니다. 슈퍼마켓 VMD, PB브랜드 브랜딩, 전시 그래픽 등 실제 적용 중심의 프로젝트를 진행해왔습니다.</p>
+            <p>관심 분야는 <em>스포츠/액티브웨어 브랜딩, 웰니스, 여행 라이프스타일</em>입니다. 사용자 경험이 좋은 리테일 환경을 설계하는 데 흥미가 많습니다.</p>
+          </div>
+          <div class="box">
+            <div class="skills" aria-label="보유 기술">
+              <span class="pill">Photoshop</span>
+              <span class="pill">Illustrator</span>
+              <span class="pill">InDesign</span>
+              <span class="pill">Figma</span>
+              <span class="pill">After Effects</span>
+              <span class="pill">SketchUp</span>
+              <span class="pill">Revit</span>
+              <span class="pill">HTML · CSS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="about" class="container section reveal">
-            <h2>About</h2>
-            <p>
-                안녕하세요! 구조/공간 도메인에 강점이 있는 개발자이자 디자이너입니다.
-                Revit Add-in을 주력으로 하며, 현재는 프론트엔드로 영역을 확장하고 있습니다.
-            </p>
-            <ul class="tags">
-                <li>#RevitAPI</li>
-                <li>#WPF</li>
-                <li>#VMD</li>
-                <li>#SpatialBranding</li>
-                <li>#HTML</li>
-                <li>#CSS</li>
-                <li>#JavaScript</li>
-            </ul>
-        </section>
+    <!-- Resume (간단 타임라인) -->
+    <section id="resume" class="section">
+      <div class="container">
+        <h2>경력 하이라이트</h2>
+        <ul>
+          <li>롯데쇼핑 마트사업본부 · VMD / 시즌 키비주얼 기획</li>
+          <li>이마트 에브리데이 · 신규점 오픈/리뉴얼, 그래픽/WEB 디자인</li>
+          <li>디노마드 · 그래픽 디자인 인턴</li>
+        </ul>
+      </div>
+    </section>
 
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>연락처</h2>
+        <p class="lead">프로젝트 제안 및 협업 문의는 이메일로 부탁드립니다.</p>
+        <p>
+          <a class="btn btn-accent" href="mailto:hello@example.com">hello@example.com 으로 메일 보내기</a>
+        </p>
+        <p>
+          <a href="#" aria-label="Instagram">Instagram</a> ·
+          <a href="#" aria-label="Behance">Behance</a> ·
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        </p>
+      </div>
+    </section>
+  </main>
 
-        <section id="contact" class="container section reveal">
-            <h2>Contact</h2>
-            <p>협업/문의는 아래 채널로 연락 주세요.</p>
-            <ul class="contact">
-                <li><a href="mailto:junho@example.com">Email</a></li>
-                <li><a href="https://github.com/your-id" target="_blank" rel="noreferrer">GitHub</a></li>
-                <li><a href="https://www.linkedin.com/in/your-id" target="_blank" rel="noreferrer">LinkedIn</a></li>
-            </ul>
-        </section>
-    </main>
+  <footer>
+    <div class="container">© <span id="year"></span> Your Name. All rights reserved.</div>
+  </footer>
 
-
-    <footer class="site-footer container">
-        <small>© <span id="year"></span> Junho Park. All Rights Reserved.</small>
-    </footer>
-
+  <script>
+    // 모바일 메뉴 토글
+    const btn = document.querySelector('.menu-btn');
+    const menu = document.querySelector('#site-menu');
+    btn?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // 올해 표시
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
