@@ -1,178 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="ko">
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
   <!-- 웹사이트 타이틀 -->
   <title>Park Junho's Portfolio</title>
-  <meta name="description" content="건축공학 전공 / BIM & 컴퓨테이셔널 디자인 / Revit Add-in 개발자 포트폴리오" />
-  <style>
-    /* ===== 기본 설정 ===== */
-    :root{
-      --bg: #0a0b0d;
-      --text: #e8e9ea;
-      --muted: #9ca3af;
-      --card: #111318;
-      --accent: #1e40af; /* 다크 네이비 포인트 */
-      --accent-strong: #1d4ed8;
-      --border: #1f2937;
-      --success: #10b981;
-      --gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-    @media (prefers-color-scheme: light){
-      :root{ 
-        --bg:#ffffff; 
-        --text:#111827; 
-        --muted:#6b7280; 
-        --card:#f9fafb; 
-        --border:#e5e7eb; 
-        --accent:#1e40af; 
-        --accent-strong:#1d4ed8; 
-        --success:#059669;
-        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-      }
-    }
+  <meta content="건축공학 전공 / BIM &amp; 컴퓨테이셔널 디자인 / Revit Add-in 개발자 포트폴리오" name="description" />
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, Apple SD Gothic Neo, "Malgun Gothic", Arial, sans-serif; color:var(--text); background:var(--bg); line-height:1.6; }
-    a{ color:inherit; text-decoration:none; }
-    img{ max-width:100%; display:block; }
-    .container{ width:min(1100px, 92%); margin-inline:auto; }
-    .section{ padding:64px 0; }
-    .tag{ display:inline-block; padding:4px 10px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted); }
-    .btn{ display:inline-block; padding:12px 20px; border-radius:12px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,0.05), transparent); transition: all 0.3s ease; }
-    .btn:hover{ transform: translateY(-2px); box-shadow: var(--shadow); }
-    .btn-accent{ border-color:transparent; background: var(--gradient); color:white; font-weight:700; }
-    .btn-accent:hover{ background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%); }
-
-    /* ===== 헤더/내비 ===== */
-    header{ position:sticky; top:0; z-index:50; background:rgba(11,12,15,0.7); backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid var(--border); }
-    @media (prefers-color-scheme: light){ header{ background:rgba(255,255,255,0.8); } }
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; }
-    .brand{ font-weight:800; letter-spacing:0.2px; }
-    nav a{ color:var(--muted); padding:8px 10px; border-radius:8px; }
-    nav a:hover{ color:var(--text); background:rgba(125,211,252,0.12); }
-    .menu-btn{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 12px; border-radius:8px; }
-    .menu{ display:flex; gap:2px; }
-    @media (max-width: 760px){
-      .menu-btn{ display:block; }
-      .menu{ display:none; flex-direction:column; position:absolute; left:0; right:0; top:56px; background:inherit; border-bottom:1px solid var(--border); padding:8px; }
-      .menu.open{ display:flex; }
-    }
-
-    /* ===== BIO 섹션 ===== */
-    .bio{ padding:120px 0 80px; text-align:center; position:relative; }
-    /* .bio::before{ content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(ellipse at center, rgba(30,64,175,0.1) 0%, transparent 70%); pointer-events:none; } */
-    .bio h1{ font-family: 'Jet Brains Mono Light', serif; font-size: clamp(48px, 6vw, 72px); letter-spacing: 0.1em; margin:0 0 40px; color:var(--text); }
-    .profile-image{ width:200px; height:200px; border-radius:50%; background:var(--gradient); margin:0 auto 40px; display:flex; align-items:center; justify-content:center; color:white; font-size:18px; font-weight:600; border:0px solid var(--accent); overflow:hidden; }
-    .profile-image img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
-    .bio-subtitle{ margin-bottom:60px; }
-    .bio-subtitle h2{ font-size:28px; color:var(--text); margin:0 0 20px; font-weight:600; }
-    .bio-subtitle p{ font-size:18px; color:var(--muted); line-height:1.7; margin:0; max-width:800px; margin:0 auto; }
-
-    /* ===== 히어로 ===== */
-    .hero{ padding:80px 0; display:grid; grid-template-columns: 1.2fr 1fr; gap:48px; align-items:center; position:relative; }
-    .hero::before{ content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(ellipse at center, rgba(30,64,175,0.1) 0%, transparent 70%); pointer-events:none; }
-    .hero h1{ font-size: clamp(32px, 4vw, 52px); line-height:1.1; margin:0 0 20px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero p{ color:var(--muted); margin:0 0 32px; font-size:18px; line-height:1.7; }
-    .hero-card{ background:var(--card); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow: var(--shadow); }
-    .hero-img{ aspect-ratio: 4/3; background: var(--gradient); border-radius:16px; display:grid; place-items:center; color:white; font-size:16px; font-weight:600; }
-    .hero-cta{ display:flex; gap:16px; flex-wrap:wrap; }
-    @media (max-width: 960px){ .hero{ grid-template-columns:1fr; gap:32px; padding:60px 0; } }
-
-    /* ===== 프로젝트 카드 ===== */
-    .grid{ display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); }
-    .card{ grid-column: span 4; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; transition: transform .15s ease, box-shadow .15s ease; }
-    .card:hover{ transform: translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.18); }
-    .card h3{ margin:10px 0 6px; font-size:18px; }
-    .card p{ margin:0; color:var(--muted); font-size:14px; }
-    .thumb{ aspect-ratio: 16 / 9; border-radius:10px; background:#0f172a; border:1px dashed var(--border); display:grid; place-items:center; color:#94a3b8; font-size:12px; }
-    @media (max-width: 1000px){ .card{ grid-column: span 6; } }
-    @media (max-width: 640px){ .card{ grid-column: span 12; } }
-
-    /* ===== 섹션 타이틀 ===== */
-    .section h2{ font-size: clamp(22px, 2.2vw, 32px); margin:0 0 10px; }
-    .section .lead{ color:var(--muted); margin:0 0 22px; }
-
-    /* ===== about / skills ===== */
-    .about{ display:grid; grid-template-columns: 1.1fr 1fr; gap:24px; }
-    .about .box{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; }
-    .skills{ display:flex; flex-wrap:wrap; gap:8px; }
-    .pill{ padding:6px 10px; background:rgba(125,211,252,0.12); border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--accent-strong); }
-    @media (max-width: 900px){ .about{ grid-template-columns:1fr; } }
-
-    /* ===== 푸터 ===== */
-    footer{ border-top:1px solid var(--border); padding:32px 0 48px; color:var(--muted); font-size:14px; }
-
-    /* ===== 애니메이션 ===== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-on-scroll {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .animate-on-scroll:nth-child(1) { animation-delay: 0.1s; }
-    .animate-on-scroll:nth-child(2) { animation-delay: 0.2s; }
-    .animate-on-scroll:nth-child(3) { animation-delay: 0.3s; }
-    .animate-on-scroll:nth-child(4) { animation-delay: 0.4s; }
-
-    /* ===== 스크롤 애니메이션 ===== */
-    .section {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
-
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== 스킬 숙련도 표시 ===== */
-    .skill-item{ display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
-    .skill-name{ font-weight:600; color:var(--text); }
-    .skill-level{ display:flex; gap:2px; }
-    .skill-dot{ width:12px; height:12px; border-radius:50%; background:var(--accent); }
-    .skill-dot.empty{ background:var(--border); opacity:0.3; }
-
-    /* ===== 개인정보 섹션 ===== */
-    .personal-info{ display:grid; grid-template-columns: 1fr 2fr; gap:40px; margin-bottom:60px; }
-    .info-label{ font-weight:700; color:var(--text); font-size:18px; }
-    .info-content{ color:var(--muted); }
-    .info-item{ margin-bottom:8px; }
-
-    /* ===== 섹션 레이아웃 ===== */
-    .resume-section{ display:grid; grid-template-columns: 1fr 2fr; gap:40px; margin-bottom:40px; }
-    .section-title{ font-weight:700; color:var(--text); font-size:18px; }
-    .section-content{ color:var(--muted); }
-    .section-item{ margin-bottom:8px; }
-    .section-item strong{ color:var(--text); }
-
-    @media (max-width: 768px){
-      .personal-info, .resume-section{ grid-template-columns: 1fr; gap:20px; }
-    }
-  </style>
+  <link href="./styles.css" rel="stylesheet" />
 </head>
+
 <body>
   <header>
     <!-- div는 의미(세맨틱)가 없는 ‘그룹/레이아웃용 박스 -->
     <!-- 스타일을 묶거나 JS로 다루기 위한 훅(hook) 역할 -->
     <div class="container nav">
       <div class="brand">Park Junho</div>
-      <button class="menu-btn" aria-expanded="false" aria-controls="site-menu">메뉴</button>
-      <nav id="site-menu" class="menu" aria-label="주요 메뉴">
+      <button aria-controls="site-menu" aria-expanded="false" class="menu-btn">메뉴</button>
+      <nav aria-label="주요 메뉴" class="menu" id="site-menu">
         <a href="#work">프로젝트</a>
         <a href="#about">소개</a>
         <a href="#competencies">핵심역량</a>
@@ -184,26 +31,128 @@
       </nav>
     </div>
   </header>
-
   <main>
     <!-- BIO -->
-    <section class="container bio"> 
+    <section class="container bio">
       <!-- class는 스타일/스크립트를 적용하기 위한 이름표 -->
       <!-- 위는 container, bio 스타일 2개 적용한다는 뜻 -->
       <!-- section은 '의미 있는 덩어리(섹션)'를 만들 때 쓰는 시맨틱 태그 -->
       <!-- 단순한 박스가 필요하면 <div>, 의미 단위로 구분하고 싶으면 <section>이 적합. -->
       <h1>BIO</h1>
       <div class="profile-image">
-        <img src="images/profile-picture.jpeg" alt="박준호 프로필 사진">
+        <img alt="박준호 프로필 사진" src="images/profile-picture.jpeg" />
       </div>
-       <div class="bio-subtitle">
-         <h2>Architecture × BIM × Computational Design | Revit Add-in 개발(C#)</h2>
-         <p>서울과학기술대학교 건축학부 건축공학 전공을 바탕으로, 건축설계부터 BIM 실행까지 전 과정을 이해하며 Revit Add-in/C# 기반의 자동화를 구현합니다. Revit–Rhino–Grasshopper 연계를 통해 데이터 기반 설계·검증·산출 자동화를 구축해 품질과 생산성을 높이는 데 강점이 있습니다.</p>
-       </div>
+      <div class="bio-subtitle">
+        <h2>Architecture × BIM × Computational Design | Revit Add-in 개발(C#)</h2>
+        <p>서울과학기술대학교 건축학부 건축공학 전공을 바탕으로, 건축설계부터 BIM 실행까지 전 과정을 이해하며 Revit Add-in/C# 기반의 자동화를 구현합니다.
+          Revit–Rhino–Grasshopper 연계를 통해 데이터 기반 설계·검증·산출 자동화를 구축해 품질과 생산성을 높이는 데 강점이 있습니다.</p>
+      </div>
     </section>
-
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2>소개</h2>
+        <div class="about">
+          <div class="box">
+            <p><strong>안녕하세요! 건축과 기술을 연결하는 컴퓨테이셔널 디자이너</strong>입니다. 건축공학을 전공하고 BIM과 컴퓨테이셔널 디자인에 깊은 관심을 가지고 있으며, 현재 토목설계
+              회사에서 Revit Add-in 개발자로 활동하고 있습니다.</p>
+            <p>관심 분야는 <em>BIM 자동화, 파라메트릭 설계, 디지털 트윈, 건설 기술 혁신</em>입니다. 전통적인 설계 방식을 디지털 기술로 혁신하여 더 효율적이고 정확한 설계 프로세스를
+              구축하는 데 집중하고 있습니다.</p>
+          </div>
+          <div class="box">
+            <div aria-label="보유 기술" class="skills">
+              <span class="pill">Revit API</span>
+              <span class="pill">C#</span>
+              <span class="pill">Python</span>
+              <span class="pill">Grasshopper</span>
+              <span class="pill">Rhino</span>
+              <span class="pill">AutoCAD</span>
+              <span class="pill">Civil 3D</span>
+              <span class="pill">InfraWorks</span>
+              <span class="pill">Dynamo</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">HTML · CSS</span>
+              <span class="pill">BIM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Work -->
+    <section class="section" id="work">
+      <div class="container">
+        <h2>프로젝트</h2>
+        <p class="lead">BIM, 컴퓨테이셔널 디자인, Revit Add-in 개발 관련 프로젝트들을 소개합니다.</p>
+        <div class="grid">
+          <!-- 프로젝트 카드 예시 1 -->
+          <article aria-labelledby="p1-title" class="card">
+            <div class="thumb">Revit Add-in 개발</div>
+            <h3 id="p1-title">자동화 설계 도구 개발</h3>
+            <p>토목설계 프로세스 자동화를 위한 Revit Add-in 개발. 설계 시간 40% 단축 효과.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#Revit API</a>
+              <a class="tag" href="#">#C#</a>
+              <a class="tag" href="#">#자동화</a>
+            </div>
+          </article>
+          <!-- 프로젝트 카드 예시 2 -->
+          <article aria-labelledby="p2-title" class="card">
+            <div class="thumb">BIM 모델링</div>
+            <h3 id="p2-title">교량 BIM 모델링</h3>
+            <p>대형 교량 프로젝트의 통합 BIM 모델 구축 및 시각화 작업.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#BIM</a>
+              <a class="tag" href="#">#Civil 3D</a>
+              <a class="tag" href="#">#InfraWorks</a>
+            </div>
+          </article>
+          <!-- 프로젝트 카드 예시 3 -->
+          <article aria-labelledby="p3-title" class="card">
+            <div class="thumb">컴퓨테이셔널 디자인</div>
+            <h3 id="p3-title">파라메트릭 구조 설계</h3>
+            <p>Grasshopper를 활용한 최적화된 구조 시스템 설계 및 분석.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#Grasshopper</a>
+              <a class="tag" href="#">#Rhino</a>
+              <a class="tag" href="#">#최적화</a>
+            </div>
+          </article>
+          <article aria-labelledby="p4-title" class="card">
+            <div class="thumb">디지털 트윈</div>
+            <h3 id="p4-title">인프라 디지털 트윈 구축</h3>
+            <p>IoT 센서와 BIM 모델을 연동한 실시간 모니터링 시스템 개발.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#IoT</a>
+              <a class="tag" href="#">#디지털트윈</a>
+              <a class="tag" href="#">#모니터링</a>
+            </div>
+          </article>
+          <article aria-labelledby="p5-title" class="card">
+            <div class="thumb">Python 자동화</div>
+            <h3 id="p5-title">설계 계산서 자동 생성</h3>
+            <p>Python을 활용한 구조계산서 자동 생성 및 검토 시스템 개발.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#Python</a>
+              <a class="tag" href="#">#자동화</a>
+              <a class="tag" href="#">#구조계산</a>
+            </div>
+          </article>
+          <article aria-labelledby="p6-title" class="card">
+            <div class="thumb">VR/AR 시각화</div>
+            <h3 id="p6-title">건설 현장 VR 시뮬레이션</h3>
+            <p>Unity를 활용한 건설 공정 시뮬레이션 및 VR 체험 시스템 개발.</p>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <a class="tag" href="#">#Unity</a>
+              <a class="tag" href="#">#VR</a>
+              <a class="tag" href="#">#시뮬레이션</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
     <!-- Core Competencies -->
-    <section id="competencies" class="container section">
+    <section class="container section" id="competencies">
       <div class="resume-section">
         <div class="section-title">핵심 역량</div>
         <div class="section-content">
@@ -215,19 +164,6 @@
         </div>
       </div>
     </section>
-    
-    <!-- Personal Info -->
-    <section class="container section">
-      <div class="personal-info">
-        <div class="info-label">개인정보</div>
-        <div class="info-content">
-          <div class="info-item"><strong>이름:</strong> 박준호</div>
-          <div class="info-item"><strong>생년월일:</strong> 1997.01.12</div>
-          <div class="info-item"><strong>이메일:</strong> jnhuo@naver.com</div>
-        </div>
-      </div>
-    </section>
-
     <!-- Skills -->
     <section class="container section">
       <div class="resume-section">
@@ -326,103 +262,9 @@
         </div>
       </div>
     </section>
-
-    <!-- Work -->
-    <section id="work" class="section">
-      <div class="container">
-        <h2>프로젝트</h2>
-        <p class="lead">BIM, 컴퓨테이셔널 디자인, Revit Add-in 개발 관련 프로젝트들을 소개합니다.</p>
-
-        <div class="grid">
-          <!-- 프로젝트 카드 예시 1 -->
-          <article class="card" aria-labelledby="p1-title">
-            <div class="thumb">Revit Add-in 개발</div>
-            <h3 id="p1-title">자동화 설계 도구 개발</h3>
-            <p>토목설계 프로세스 자동화를 위한 Revit Add-in 개발. 설계 시간 40% 단축 효과.</p>
-            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-              <a class="tag" href="#">#Revit API</a><a class="tag" href="#">#C#</a><a class="tag" href="#">#자동화</a>
-            </div>
-          </article>
-          <!-- 프로젝트 카드 예시 2 -->
-          <article class="card" aria-labelledby="p2-title">
-            <div class="thumb">BIM 모델링</div>
-            <h3 id="p2-title">교량 BIM 모델링</h3>
-            <p>대형 교량 프로젝트의 통합 BIM 모델 구축 및 시각화 작업.</p>
-            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-              <a class="tag" href="#">#BIM</a><a class="tag" href="#">#Civil 3D</a><a class="tag" href="#">#InfraWorks</a>
-            </div>
-          </article>
-          <!-- 프로젝트 카드 예시 3 -->
-          <article class="card" aria-labelledby="p3-title">
-            <div class="thumb">컴퓨테이셔널 디자인</div>
-            <h3 id="p3-title">파라메트릭 구조 설계</h3>
-            <p>Grasshopper를 활용한 최적화된 구조 시스템 설계 및 분석.</p>
-            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-              <a class="tag" href="#">#Grasshopper</a><a class="tag" href="#">#Rhino</a><a class="tag" href="#">#최적화</a>
-            </div>
-          </article>
-          
-          <article class="card" aria-labelledby="p4-title">
-            <div class="thumb">디지털 트윈</div>
-            <h3 id="p4-title">인프라 디지털 트윈 구축</h3>
-            <p>IoT 센서와 BIM 모델을 연동한 실시간 모니터링 시스템 개발.</p>
-            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-              <a class="tag" href="#">#IoT</a><a class="tag" href="#">#디지털트윈</a><a class="tag" href="#">#모니터링</a>
-            </div>
-          </article>
-          
-          <article class="card" aria-labelledby="p5-title">
-            <div class="thumb">Python 자동화</div>
-            <h3 id="p5-title">설계 계산서 자동 생성</h3>
-            <p>Python을 활용한 구조계산서 자동 생성 및 검토 시스템 개발.</p>
-            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-              <a class="tag" href="#">#Python</a><a class="tag" href="#">#자동화</a><a class="tag" href="#">#구조계산</a>
-            </div>
-          </article>
-          
-          <article class="card" aria-labelledby="p6-title">
-            <div class="thumb">VR/AR 시각화</div>
-            <h3 id="p6-title">건설 현장 VR 시뮬레이션</h3>
-            <p>Unity를 활용한 건설 공정 시뮬레이션 및 VR 체험 시스템 개발.</p>
-            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-              <a class="tag" href="#">#Unity</a><a class="tag" href="#">#VR</a><a class="tag" href="#">#시뮬레이션</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2>소개</h2>
-        <div class="about">
-          <div class="box">
-            <p><strong>안녕하세요! 건축과 기술을 연결하는 컴퓨테이셔널 디자이너</strong>입니다. 건축공학을 전공하고 BIM과 컴퓨테이셔널 디자인에 깊은 관심을 가지고 있으며, 현재 토목설계 회사에서 Revit Add-in 개발자로 활동하고 있습니다.</p>
-            <p>관심 분야는 <em>BIM 자동화, 파라메트릭 설계, 디지털 트윈, 건설 기술 혁신</em>입니다. 전통적인 설계 방식을 디지털 기술로 혁신하여 더 효율적이고 정확한 설계 프로세스를 구축하는 데 집중하고 있습니다.</p>
-          </div>
-          <div class="box">
-            <div class="skills" aria-label="보유 기술">
-              <span class="pill">Revit API</span>
-              <span class="pill">C#</span>
-              <span class="pill">Python</span>
-              <span class="pill">Grasshopper</span>
-              <span class="pill">Rhino</span>
-              <span class="pill">AutoCAD</span>
-              <span class="pill">Civil 3D</span>
-              <span class="pill">InfraWorks</span>
-              <span class="pill">Dynamo</span>
-              <span class="pill">JavaScript</span>
-              <span class="pill">HTML · CSS</span>
-              <span class="pill">BIM</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    
     <!-- Education -->
-    <section id="education" class="container section">
+    <section class="container section" id="education">
       <div class="resume-section">
         <div class="section-title">Education</div>
         <div class="section-content">
@@ -431,9 +273,8 @@
         </div>
       </div>
     </section>
-
     <!-- Certificates -->
-    <section id="certificates" class="container section">
+    <section class="container section" id="certificates">
       <div class="resume-section">
         <div class="section-title">Certificate</div>
         <div class="section-content">
@@ -445,12 +286,12 @@
         </div>
       </div>
     </section>
-
     <!-- Experience -->
-    <section id="resume" class="container section">
+    <section class="container section" id="resume">
       <div class="resume-section">
         <div class="section-title">Experience</div>
         <div class="section-content">
+          <div class="section-item"><strong>2025.01 - </strong> 동명기술공단</div>
           <div class="section-item"><strong>2024.05 - 2024.11</strong> 하우빌드</div>
           <div class="section-item"><strong>2022.11 - 2024.05</strong> 디에이그룹엔지니어링종합건축사사무소</div>
           <div class="section-item"><strong>2022.03 - 2022.10</strong> 공간디자인연구소건축사사무소</div>
@@ -458,9 +299,8 @@
         </div>
       </div>
     </section>
-
     <!-- Awards -->
-    <section id="awards" class="container section">
+    <section class="container section" id="awards">
       <div class="resume-section">
         <div class="section-title">Awards</div>
         <div class="section-content">
@@ -470,10 +310,8 @@
         </div>
       </div>
     </section>
-
-
     <!-- Contact -->
-    <section id="contact" class="section">
+    <section class="section" id="contact">
       <div class="container">
         <h2>연락처</h2>
         <p class="lead">프로젝트 제안 및 협업 문의는 이메일로 부탁드립니다.</p>
@@ -481,18 +319,16 @@
           <a class="btn btn-accent" href="mailto:junho.park@example.com">junho.park@example.com 으로 메일 보내기</a>
         </p>
         <p>
-          <a href="#" aria-label="GitHub">GitHub</a> ·
-          <a href="#" aria-label="LinkedIn">LinkedIn</a> ·
-          <a href="#" aria-label="Portfolio">Portfolio</a>
+          <a aria-label="GitHub" href="#">GitHub</a> ·
+          <a aria-label="LinkedIn" href="#">LinkedIn</a> ·
+          <a aria-label="Portfolio" href="#">Portfolio</a>
         </p>
       </div>
     </section>
   </main>
-
   <footer>
     <div class="container">© <span id="year"></span> Park Junho. All rights reserved.</div>
   </footer>
-
   <script>
     // 모바일 메뉴 토글
     const btn = document.querySelector('.menu-btn');
@@ -552,4 +388,5 @@
     });
   </script>
 </body>
+
 </html>
