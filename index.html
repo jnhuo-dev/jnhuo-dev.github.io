@@ -3,500 +3,240 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Park Junho — BIM Engineer & Developer</title>
-  <meta name="description" content="건축공학 전공, BIM 실행 및 Revit Add-in 개발 전문가 포트폴리오" />
-  <meta property="og:title" content="Park Junho — BIM Engineer & Developer" />
-  <meta property="og:description" content="건축공학 전공, BIM 실행 및 Revit Add-in 개발 전문가 포트폴리오" />
+  <title>PARK JUN HO | Architectural Engineering · BIM · Revit API</title>
+  <meta name="description" content="Architecture-based BIM developer creating computational workflows and Revit automation tools." />
+  <meta property="og:title" content="PARK JUN HO | Architectural Engineering · BIM · Revit API" />
+  <meta property="og:description" content="Architecture-based BIM developer creating computational workflows and Revit automation tools." />
   <meta property="og:image" content="images/profile-picture.jpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- ===== HEADER ===== -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a class="brand" href="#top">PJ</a>
+      <a class="brand" href="#top" aria-label="PARK JUN HO home">PJH</a>
 
-      <button
-        class="nav-toggle"
-        aria-expanded="false"
-        aria-controls="site-nav"
-        aria-label="메뉴 열기/닫기"
-      >
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기">
         <span></span>
         <span></span>
         <span></span>
       </button>
 
       <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
-        <a href="#about">소개</a>
-        <a href="#skills">기술</a>
-        <a href="#projects">프로젝트</a>
-        <a href="#career">경력</a>
-        <a href="#contact">연락처</a>
+        <a href="#projects">Work</a>
+        <a href="#profile">Profile</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="top">
-      <div class="container">
-        <div class="hero-layout">
-          <div class="hero-text">
-            <span class="hero-eyebrow">BIM Engineer · Computational Designer</span>
-            <h1 class="hero-name">Park Junho</h1>
-            <p class="hero-tagline">
-              건축공학을 전공하고 BIM과 컴퓨테이셔널 디자인에 깊이 몰두해 왔습니다.<br />
-              Revit Add-in 개발과 파라메트릭 설계로 설계 프로세스를 혁신합니다.
-            </p>
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
-              <a class="btn btn-ghost" href="#contact">연락하기</a>
-            </div>
-            <div class="hero-status">
-              <span class="status-dot"></span>
-              <span>채용 가능 · Available for work</span>
-            </div>
-          </div>
-          <div class="hero-photo">
-            <div class="avatar-wrap">
-              <img src="images/profile-picture.jpeg" alt="박준호 프로필 사진" />
-            </div>
-          </div>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <h1 id="hero-title">PARK JUN HO</h1>
+        <p class="hero-role">Architectural Engineering · BIM · Revit API</p>
+        <p class="hero-copy">Architecture-based BIM developer creating computational workflows and Revit automation tools.</p>
+        <div class="hero-actions" aria-label="주요 이동">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="#contact">Contact</a>
+        </div>
+        <div class="hero-signals" aria-label="핵심 역량">
+          <span>Architectural Design</span>
+          <span>BIM Coordination</span>
+          <span>Revit Add-in Development</span>
         </div>
       </div>
     </section>
 
-    <!-- ===== ABOUT ===== -->
-    <section class="section" id="about">
+    <section class="section work-section" id="projects" aria-labelledby="projects-title">
       <div class="container">
-        <div class="section-header reveal">
-          <h2>소개</h2>
-          <p class="section-subtitle">About</p>
-        </div>
-        <div class="about-grid">
-          <div class="about-card reveal">
-            <p>
-              <strong style="color: var(--color-text);">안녕하세요! 건축과 기술을 연결하는 컴퓨테이셔널 디자이너</strong>입니다.
-              건축공학을 전공하고 BIM과 컴퓨테이셔널 디자인에 깊은 관심을 가지고 있으며,
-              현재 토목설계 회사에서 Revit Add-in 개발자로 활동하고 있습니다.
-            </p>
-            <p>
-              Revit–Rhino–Grasshopper 연계를 통해 데이터 기반 설계·검증·산출 자동화를 구축하여
-              품질과 생산성을 높이는 데 강점이 있습니다. 전통적인 설계 방식을 디지털 기술로 혁신하여
-              더 효율적이고 정확한 설계 프로세스를 구축하는 데 집중하고 있습니다.
-            </p>
-          </div>
-          <div class="about-card reveal">
-            <h3>관심 분야</h3>
-            <div class="about-interests">
-              <div class="interest-item">
-                <div class="interest-icon">⚙️</div>
-                <span>BIM 자동화</span>
-              </div>
-              <div class="interest-item">
-                <div class="interest-icon">📐</div>
-                <span>파라메트릭 설계</span>
-              </div>
-              <div class="interest-item">
-                <div class="interest-icon">🔗</div>
-                <span>디지털 트윈</span>
-              </div>
-              <div class="interest-item">
-                <div class="interest-icon">🏗️</div>
-                <span>건설 기술 혁신</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SKILLS ===== -->
-    <section class="section section--alt" id="skills">
-      <div class="container">
-        <div class="section-header reveal">
-          <h2>기술 스택</h2>
-          <p class="section-subtitle">Skills</p>
-        </div>
-
-        <div class="skills-layout">
-          <!-- BIM & 설계 도구 -->
-          <div class="skills-group reveal">
-            <h3 class="skills-category">BIM & 설계 도구</h3>
-            <div class="skill-item">
-              <span class="skill-name">Revit</span>
-              <div class="skill-level" aria-label="10/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">AutoCAD</span>
-              <div class="skill-level" aria-label="8/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Rhino 3D</span>
-              <div class="skill-level" aria-label="10/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Grasshopper</span>
-              <div class="skill-level" aria-label="8/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Dynamo</span>
-              <div class="skill-level" aria-label="5/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-                <div class="skill-dot empty"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Civil 3D</span>
-              <div class="skill-level" aria-label="6/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 개발 · 프로그래밍 -->
-          <div class="skills-group reveal">
-            <h3 class="skills-category">개발 · 프로그래밍</h3>
-            <div class="skill-item">
-              <span class="skill-name">C# / Revit API</span>
-              <div class="skill-level" aria-label="8/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Python</span>
-              <div class="skill-level" aria-label="7/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-                <div class="skill-dot empty"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">JavaScript</span>
-              <div class="skill-level" aria-label="5/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-                <div class="skill-dot empty"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">HTML · CSS</span>
-              <div class="skill-level" aria-label="6/10">
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot"></div><div class="skill-dot"></div><div class="skill-dot"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-                <div class="skill-dot empty"></div><div class="skill-dot empty"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="skills-pills-section reveal">
-          <h3>Tools & Platforms</h3>
-          <div class="skills-pills">
-            <span class="pill">InfraWorks</span>
-            <span class="pill">BIM 360</span>
-            <span class="pill">Photoshop</span>
-            <span class="pill">Excel</span>
-            <span class="pill">Git</span>
-            <span class="pill">Visual Studio</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== PROJECTS ===== -->
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-header reveal">
-          <h2>프로젝트</h2>
-          <p class="section-subtitle">Projects</p>
-        </div>
-
-        <div class="filter-wrap reveal">
-          <button class="filter-btn active" data-filter="all">전체</button>
-          <button class="filter-btn" data-filter="dev">개발</button>
-          <button class="filter-btn" data-filter="bim">BIM</button>
-          <button class="filter-btn" data-filter="design">설계</button>
-        </div>
-
-        <div class="projects-grid">
-          <article class="project-card reveal" data-category="dev">
-            <div class="project-thumb project-thumb--dev">Revit Add-in</div>
-            <div class="project-body">
-              <h3 class="project-title">자동화 설계 도구 개발</h3>
-              <p class="project-desc">토목설계 프로세스 자동화를 위한 Revit Add-in 개발. 설계 시간 40% 단축 효과.</p>
-              <div class="project-tags">
-                <span class="tag">#Revit API</span>
-                <span class="tag">#C#</span>
-                <span class="tag">#자동화</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-category="bim">
-            <div class="project-thumb project-thumb--bim">BIM 모델링</div>
-            <div class="project-body">
-              <h3 class="project-title">교량 BIM 모델링</h3>
-              <p class="project-desc">대형 교량 프로젝트의 통합 BIM 모델 구축 및 시각화 작업.</p>
-              <div class="project-tags">
-                <span class="tag">#BIM</span>
-                <span class="tag">#Civil 3D</span>
-                <span class="tag">#InfraWorks</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-category="design">
-            <div class="project-thumb project-thumb--design">파라메트릭 설계</div>
-            <div class="project-body">
-              <h3 class="project-title">파라메트릭 구조 설계</h3>
-              <p class="project-desc">Grasshopper를 활용한 최적화된 구조 시스템 설계 및 분석.</p>
-              <div class="project-tags">
-                <span class="tag">#Grasshopper</span>
-                <span class="tag">#Rhino</span>
-                <span class="tag">#최적화</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-category="bim">
-            <div class="project-thumb project-thumb--dt">디지털 트윈</div>
-            <div class="project-body">
-              <h3 class="project-title">인프라 디지털 트윈 구축</h3>
-              <p class="project-desc">IoT 센서와 BIM 모델을 연동한 실시간 모니터링 시스템 개발.</p>
-              <div class="project-tags">
-                <span class="tag">#IoT</span>
-                <span class="tag">#디지털트윈</span>
-                <span class="tag">#모니터링</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-category="dev">
-            <div class="project-thumb project-thumb--python">Python 자동화</div>
-            <div class="project-body">
-              <h3 class="project-title">설계 계산서 자동 생성</h3>
-              <p class="project-desc">Python을 활용한 구조계산서 자동 생성 및 검토 시스템 개발.</p>
-              <div class="project-tags">
-                <span class="tag">#Python</span>
-                <span class="tag">#자동화</span>
-                <span class="tag">#구조계산</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-category="design">
-            <div class="project-thumb project-thumb--vr">VR/AR 시각화</div>
-            <div class="project-body">
-              <h3 class="project-title">건설 현장 VR 시뮬레이션</h3>
-              <p class="project-desc">Unity를 활용한 건설 공정 시뮬레이션 및 VR 체험 시스템 개발.</p>
-              <div class="project-tags">
-                <span class="tag">#Unity</span>
-                <span class="tag">#VR</span>
-                <span class="tag">#시뮬레이션</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CAREER ===== -->
-    <section class="section section--alt" id="career">
-      <div class="container">
-        <div class="section-header reveal">
-          <h2>경력 및 학력</h2>
-          <p class="section-subtitle">Career & Education</p>
-        </div>
-
-        <div class="career-layout">
-          <!-- Experience Timeline -->
+        <div class="section-kicker">Selected portfolio</div>
+        <div class="section-heading-row">
           <div>
-            <p class="career-col-title">경력 (Experience)</p>
-            <ol class="timeline">
-              <li class="timeline-item current reveal">
-                <div class="timeline-header">
-                  <strong class="timeline-company">동명기술공단</strong>
-                  <span class="timeline-badge">현재</span>
-                </div>
-                <span class="timeline-period">2025.01 — 현재</span>
-                <p class="timeline-role">BIM / Revit Add-in 개발</p>
-              </li>
-              <li class="timeline-item reveal">
-                <div class="timeline-header">
-                  <strong class="timeline-company">하우빌드</strong>
-                </div>
-                <span class="timeline-period">2024.05 — 2024.11</span>
-                <p class="timeline-role">BIM 설계 실무</p>
-              </li>
-              <li class="timeline-item reveal">
-                <div class="timeline-header">
-                  <strong class="timeline-company">디에이그룹엔지니어링종합건축사사무소</strong>
-                </div>
-                <span class="timeline-period">2022.11 — 2024.05</span>
-                <p class="timeline-role">건축 BIM 실행 및 모델링</p>
-              </li>
-              <li class="timeline-item reveal">
-                <div class="timeline-header">
-                  <strong class="timeline-company">공간디자인연구소건축사사무소</strong>
-                </div>
-                <span class="timeline-period">2022.03 — 2022.10</span>
-                <p class="timeline-role">건축설계 실무</p>
-              </li>
-              <li class="timeline-item reveal">
-                <div class="timeline-header">
-                  <strong class="timeline-company">현대건설</strong>
-                </div>
-                <span class="timeline-period">2021.08 — 2021.12</span>
-                <p class="timeline-role">중입자암치료센터 건설 현장</p>
-              </li>
-            </ol>
+            <h2 id="projects-title">Featured Work</h2>
+            <p class="section-lead">건축공학 기반의 설계 경험에서 BIM 프로젝트, Revit API 자동화 개발로 확장된 작업 흐름입니다.</p>
           </div>
-
-          <!-- Side: Education + Certs + Awards -->
-          <div class="career-side">
-            <div class="reveal">
-              <p class="side-group-title">학력 (Education)</p>
-              <ul class="resume-list">
-                <li class="resume-list-item">
-                  <span class="resume-year">2022</span>
-                  <span class="resume-label">서울과학기술대학교 건축공학</span>
-                </li>
-                <li class="resume-list-item">
-                  <span class="resume-year">2016</span>
-                  <span class="resume-label">서울대신고등학교</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="reveal">
-              <p class="side-group-title">자격증 (Certificates)</p>
-              <ul class="resume-list">
-                <li class="resume-list-item">
-                  <span class="resume-year">2022</span>
-                  <span class="resume-label">컴퓨터활용능력 1급</span>
-                </li>
-                <li class="resume-list-item">
-                  <span class="resume-year">2021</span>
-                  <span class="resume-label">건축기사</span>
-                </li>
-                <li class="resume-list-item">
-                  <span class="resume-year">2021</span>
-                  <span class="resume-label">BIM운용전문 2급</span>
-                </li>
-                <li class="resume-list-item">
-                  <span class="resume-year">2019</span>
-                  <span class="resume-label">전산응용건축제도기능사</span>
-                </li>
-                <li class="resume-list-item">
-                  <span class="resume-year">2017</span>
-                  <span class="resume-label">자동차 운전면허</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="reveal">
-              <p class="side-group-title">수상 (Awards)</p>
-              <ul class="resume-list">
-                <li class="resume-list-item">
-                  <span class="resume-year">2021</span>
-                  <span class="resume-label">CDE DX Awards — 장려상</span>
-                </li>
-                <li class="resume-list-item">
-                  <span class="resume-year">2020</span>
-                  <span class="resume-label">V-World 공모전 — 최우수상</span>
-                </li>
-                <li class="resume-list-item">
-                  <span class="resume-year">2019</span>
-                  <span class="resume-label">BIM Awards — 우수상</span>
-                </li>
-              </ul>
-            </div>
+          <div class="filter-bar" id="projectFilters" aria-label="프로젝트 카테고리 필터">
+            <button class="filter-btn is-active" type="button" data-filter="all">All</button>
+            <button class="filter-btn" type="button" data-filter="architecture">Architecture</button>
+            <button class="filter-btn" type="button" data-filter="bim">BIM</button>
+            <button class="filter-btn" type="button" data-filter="addin">Revit Add-in</button>
           </div>
         </div>
+
+        <div class="project-group">
+          <div class="project-group-head">
+            <span class="group-index">01</span>
+            <h3>Featured Work</h3>
+          </div>
+          <div class="featured-grid" id="featuredProjects"></div>
+        </div>
+
+        <div class="project-group archive-group">
+          <div class="project-group-head">
+            <span class="group-index">02</span>
+            <h3>Archive</h3>
+          </div>
+          <div class="archive-grid" id="archiveProjects"></div>
+        </div>
+
+        <p class="empty-state" id="emptyProjects" hidden>선택한 카테고리에 해당하는 프로젝트가 없습니다.</p>
       </div>
     </section>
 
-    <!-- ===== CONTACT ===== -->
-    <section class="section" id="contact">
+    <section class="section detail-section" id="project-detail" aria-labelledby="detail-title">
       <div class="container">
-        <div class="contact-wrap reveal">
-          <div class="section-header">
-            <h2>연락처</h2>
-            <p class="section-subtitle">Contact</p>
+        <div class="section-kicker">Case study</div>
+        <div id="projectDetail"></div>
+      </div>
+    </section>
+
+    <section class="section profile-section" id="profile" aria-labelledby="profile-title">
+      <div class="container">
+        <div class="section-kicker">Profile</div>
+        <div class="profile-grid">
+          <div class="profile-copy">
+            <h2 id="profile-title">Architecture first, automation next.</h2>
+            <p>
+              건축공학을 전공하고 설계 실무와 BIM 프로젝트를 거치며 모델링, 검토, 보고서 작성 과정에서 반복되는 업무를 구조적으로 바라보게 되었습니다.
+              현재는 Revit API와 C#을 중심으로 설계 품질 검토와 BIM 자동화 워크플로우를 개발하고 있습니다.
+            </p>
+            <p>
+              설계 의도를 이해하는 건축 배경과 데이터를 다루는 개발 역량을 함께 사용해, 팀이 더 정확하고 빠르게 의사결정할 수 있는 도구를 만드는 데 집중합니다.
+            </p>
           </div>
-          <p class="contact-lead">프로젝트 제안 및 채용 문의는 이메일로 부탁드립니다.</p>
-          <a class="btn btn-primary btn-lg" href="mailto:junho.park@example.com">
-            이메일 보내기
-          </a>
-          <div class="contact-links">
-            <a class="contact-link" href="https://github.com/jnhuo-dev" target="_blank" rel="noopener" aria-label="GitHub">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-              </svg>
-              GitHub
-            </a>
-            <a class="contact-link" href="#" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-              LinkedIn
-            </a>
-          </div>
+          <figure class="profile-media">
+            <img src="images/profile-picture.jpeg" alt="PARK JUN HO profile" />
+          </figure>
+        </div>
+
+        <div class="profile-cards">
+          <article class="info-card reveal">
+            <span class="info-label">Education</span>
+            <strong>서울과학기술대학교 건축공학</strong>
+            <p>Architectural Engineering background with design, BIM, and computational design experience.</p>
+          </article>
+          <article class="info-card reveal">
+            <span class="info-label">Experience</span>
+            <strong>BIM 실무 및 Revit Add-in 개발</strong>
+            <p>동명기술공단, 하우빌드, 디에이그룹, 공간디자인연구소, 현대건설 프로젝트 경험.</p>
+          </article>
+          <article class="info-card reveal">
+            <span class="info-label">Certificate</span>
+            <strong>건축기사 · BIM운용전문 2급</strong>
+            <p>컴퓨터활용능력 1급, 전산응용건축제도기능사 등 설계와 데이터 처리 기반 자격 보유.</p>
+          </article>
+          <article class="info-card reveal">
+            <span class="info-label">Awards</span>
+            <strong>BIM Awards · V-World · CDE DX</strong>
+            <p>BIM, 디지털 공간정보, DX 관련 공모전 수상 경험을 통해 기술 기반 설계 역량을 확장했습니다.</p>
+          </article>
+        </div>
+
+        <div class="timeline-panel reveal">
+          <h3>Career Flow</h3>
+          <ol class="career-flow">
+            <li>
+              <span>2019 - 2022</span>
+              <strong>Architectural Engineering and Design Foundation</strong>
+              <p>건축 설계, 도면, 공간 구성, 공모전 프로젝트를 통해 설계 사고의 기반을 구축했습니다.</p>
+            </li>
+            <li>
+              <span>2022 - 2024</span>
+              <strong>BIM Practice and Coordination</strong>
+              <p>Revit 기반 모델링과 BIM 실행 업무를 수행하며 설계 정보와 협업 프로세스를 다뤘습니다.</p>
+            </li>
+            <li>
+              <span>2025 - Present</span>
+              <strong>Revit API and BIM Automation</strong>
+              <p>C#, Revit API, Dynamo, Python을 활용해 검토, 모델링, 보고서 자동화 도구를 개발하고 있습니다.</p>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
 
+    <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-kicker">Skills</div>
+        <div class="section-heading-row">
+          <div>
+            <h2 id="skills-title">Tools for BIM-driven design systems.</h2>
+            <p class="section-lead">설계 도구, BIM 플랫폼, 컴퓨테이셔널 디자인, 자동화 개발을 연결하는 기술 스택입니다.</p>
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <span class="info-label">Design Tools</span>
+            <h3>Drawing and modeling</h3>
+            <div class="tag-list">
+              <span>AutoCAD</span>
+              <span>Rhino 3D</span>
+              <span>Photoshop</span>
+              <span>Enscape</span>
+            </div>
+          </article>
+          <article class="skill-card reveal">
+            <span class="info-label">BIM Tools</span>
+            <h3>Modeling and coordination</h3>
+            <div class="tag-list">
+              <span>Revit</span>
+              <span>BIM Server</span>
+              <span>Clash Detective</span>
+              <span>Lumion</span>
+            </div>
+          </article>
+          <article class="skill-card reveal">
+            <span class="info-label">Computational Design</span>
+            <h3>Parametric workflows</h3>
+            <div class="tag-list">
+              <span>Grasshopper</span>
+              <span>Dynamo</span>
+              <span>Rhino 3D</span>
+              <span>Computational Design</span>
+            </div>
+          </article>
+          <article class="skill-card reveal">
+            <span class="info-label">Programming / Automation</span>
+            <h3>Revit automation</h3>
+            <div class="tag-list">
+              <span>C#</span>
+              <span>Revit API</span>
+              <span>Python</span>
+              <span>Pandas</span>
+              <span>BIM Automation</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2 id="contact-title">BIM automation, Revit add-in, and computational workflow collaboration.</h2>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:jnhuo@naver.com">Email</a>
+          <a class="btn btn-secondary" href="https://github.com/jnhuo-dev" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>© <span id="year"></span> Park Junho</span>
-      <span>Built with HTML · CSS · JS</span>
+      <span>© <span id="year"></span> PARK JUN HO</span>
+      <span>Architectural Engineering · BIM · Revit API</span>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="src/data/projects.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

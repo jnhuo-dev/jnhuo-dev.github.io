@@ -1,0 +1,304 @@
+window.portfolioProjects = [
+  {
+    id: "jhslab-addin",
+    title: "JHSLab Add-in",
+    subtitle: "A Revit productivity toolkit that connects modeling, validation, review reporting, and public procurement standard workflows.",
+    category: "Revit Add-in",
+    categorySlug: "addin",
+    group: "featured",
+    order: 1,
+    role: "Revit API Developer",
+    tools: ["C#", "Revit API", "WPF", "Visual Studio", "BIM Automation"],
+    summary: "Revit API와 C#으로 제작한 내부 생산성 도구 모음입니다.",
+    overview: "JHSLab Add-in은 Revit 안에서 반복적으로 수행되는 모델링, 검토, 보고서 자동화, 조달청 기준 대응 업무를 하나의 도구 흐름으로 묶은 Revit Add-in 프로젝트입니다.",
+    problem: "BIM 실무에서는 동일한 검토 항목을 여러 모델에서 반복 확인하고, 오류를 찾은 뒤 별도의 문서로 정리하는 시간이 많이 소요됩니다.",
+    solution: "Revit API 기반 기능을 모듈화해 모델 데이터 추출, 조건 검토, 오류 표시, 결과 정리 기능을 Add-in UI 안에서 연속적으로 수행하도록 구성했습니다.",
+    contribution: "기능 구조 기획, Revit API 로직 구현, C# UI 개발, 검토 자동화 흐름 설계, 실무 피드백 기반 개선을 담당했습니다.",
+    features: [
+      "모델링 보조, 검토, 보고서 자동화 기능을 모듈형 Add-in으로 구성",
+      "조달청 기준 검토 업무를 고려한 데이터 확인 흐름 설계",
+      "Revit 요소와 매개변수를 기반으로 오류를 탐지하고 사용자가 빠르게 조치하도록 지원",
+      "반복 검토 작업을 Add-in 내부의 일관된 인터페이스로 통합"
+    ],
+    impact: "반복적인 BIM 검토와 문서화 업무를 줄이고, 프로젝트별 모델 품질 확인 과정을 더 빠르고 일관되게 수행할 수 있는 기반을 만들었습니다.",
+    images: [
+      { src: "images/projects/pdf-page-30.webp", alt: "JHSLab Add-in modeling and inspection tools" },
+      { src: "images/projects/pdf-page-31.webp", alt: "JHSLab Add-in review parameter tools" },
+      { src: "images/projects/pdf-page-32.webp", alt: "JHSLab Add-in procurement and graphics tools" },
+      { src: "images/projects/pdf-page-29.webp", alt: "JHSLab Add-in overview page from portfolio PDF" }
+    ]
+  },
+  {
+    id: "validation-checker",
+    title: "Validation Checker",
+    subtitle: "Pre-IFC export validation for Revit ID and steel beam level errors.",
+    category: "Revit Add-in",
+    categorySlug: "addin",
+    group: "featured",
+    order: 2,
+    role: "Add-in Developer",
+    tools: ["C#", "Revit API", "WPF", "IFC Workflow"],
+    summary: "IFC 내보내기 전 Revit ID와 레벨 오류를 검토하는 Add-in입니다.",
+    overview: "Validation Checker는 IFC 내보내기 전에 잘못된 Revit ID와 철골 보 레벨 오류를 찾아내는 품질 검토 도구입니다.",
+    problem: "IFC 변환 후 오류를 발견하면 원인 요소를 다시 Revit에서 찾아야 하며, ID와 레벨 오류는 납품 전 품질 리스크로 이어질 수 있습니다.",
+    solution: "ID Validation Checker와 Steel Beam Level Validation Checker를 분리해 오류 유형별로 탐지하고, 결과를 그리드뷰에 표시한 뒤 수정 또는 확인 동작으로 연결했습니다.",
+    contribution: "오류 탐지 규칙 정의, Revit 요소 필터링 로직, 그리드뷰 UI, 오류 해결 버튼과 선택 요소 추적 기능을 구현했습니다.",
+    features: [
+      "IFC 내보내기 전 ID 오류 사전 탐지",
+      "철골 보 레벨 기준 오류 검토",
+      "오류 목록을 그리드뷰로 표시해 검토 우선순위 파악",
+      "오류 요소 선택과 해결 버튼으로 모델 수정 흐름 단축"
+    ],
+    impact: "IFC 납품 전 품질 검토 시간을 줄이고, 모델 오류를 Revit 안에서 바로 추적할 수 있게 했습니다.",
+    images: [
+      { src: "images/projects/pdf-page-33.webp", alt: "Validation Checker ID and steel beam validation page" }
+    ]
+  },
+  {
+    id: "autolevel-creator",
+    title: "AutoLevel Creator",
+    subtitle: "Automated Revit level generation from site-specific level data stored on a server.",
+    category: "Revit Add-in",
+    categorySlug: "addin",
+    group: "featured",
+    order: 3,
+    role: "Add-in Developer",
+    tools: ["C#", "Revit API", "Server Data", "Revit Templates"],
+    summary: "현장별 레벨 정보를 불러와 Revit 레벨과 평면도 생성을 자동화합니다.",
+    overview: "AutoLevel Creator는 서버에 저장된 현장별 레벨 정보를 불러와 Elevation 또는 Height 값을 기준으로 Revit 레벨을 자동 생성하는 도구입니다.",
+    problem: "프로젝트 초기 세팅에서 레벨을 수작업으로 만들면 기준 높이 입력 오류, 누락, 평면도 템플릿 적용 누락이 발생하기 쉽습니다.",
+    solution: "현장 데이터를 불러온 뒤 기준값에 따라 레벨을 생성하고, 레벨 및 그리드 표시 범위 조절과 평면도 템플릿 설정까지 한 번의 흐름으로 묶었습니다.",
+    contribution: "서버 데이터 매핑, 레벨 생성 로직, Elevation/Height 선택 방식, 레벨 및 그리드 사이즈 조절, 평면도 템플릿 적용 기능을 구현했습니다.",
+    features: [
+      "서버에 저장된 현장별 레벨 데이터 로드",
+      "Elevation 또는 Height 기준 자동 레벨 생성",
+      "레벨과 그리드 표시 범위 조절",
+      "평면도 생성 및 뷰 템플릿 적용"
+    ],
+    impact: "프로젝트 초기 BIM 세팅의 반복 입력을 줄이고, 레벨 기준 오류를 사전에 낮출 수 있는 자동화 흐름을 구축했습니다.",
+    images: [
+      { src: "images/projects/pdf-page-34.webp", alt: "AutoLevel Creator Revit level automation page" }
+    ]
+  },
+  {
+    id: "bim-report-automation",
+    title: "BIM Report Automation",
+    subtitle: "A research workflow for automating BIM review reports from Revit parameters to PowerPoint output.",
+    category: "BIM Project",
+    categorySlug: "bim",
+    group: "featured",
+    order: 4,
+    role: "Automation Researcher",
+    tools: ["Revit", "Dynamo", "Python", "Pandas", "Excel", "PowerPoint"],
+    summary: "검토 요소 추출부터 3D View와 PPT 보고서 생성까지 자동화한 연구입니다.",
+    overview: "BIM 검토보고서 자동화 연구는 기존 검토보고서 작성 방식의 비효율을 개선하기 위해 Revit 매개변수, Dynamo, Python, Pandas, Excel to PPT 흐름을 연결한 프로젝트입니다.",
+    problem: "검토 요소를 찾고, 3D View를 만들고, 이미지를 저장하고, 보고서에 붙여 넣는 작업이 반복적으로 발생해 시간이 많이 소요되었습니다.",
+    solution: "검토 요소 정의, 데이터 추출, 3D View 자동 생성, 이미지 내보내기, 검토보고서 자동 생성 흐름을 하나의 자동화 파이프라인으로 구성했습니다.",
+    contribution: "Revit 매개변수 구조 정리, Dynamo 그래프 구성, Python 데이터 처리, Pandas 기반 Excel 정리, PPT 자동 생성 로직을 설계했습니다.",
+    features: [
+      "검토 요소를 기준으로 Revit 데이터 추출",
+      "검토 대상별 3D View 자동 생성",
+      "이미지 내보내기와 표 데이터 정리 자동화",
+      "Excel 데이터를 PowerPoint 보고서로 변환"
+    ],
+    impact: "보고서 작성에 필요한 반복 작업을 줄이고, BIM 검토 결과를 더 빠르게 공유할 수 있는 워크플로우를 제안했습니다.",
+    images: [
+      { src: "images/projects/pdf-page-26.webp", alt: "BIM report automation workflow page" },
+      { src: "images/projects/pdf-page-27.webp", alt: "BIM report automation Revit and Excel results" },
+      { src: "images/projects/pdf-page-28.webp", alt: "BIM report automation PowerPoint generation result" }
+    ]
+  },
+  {
+    id: "hbim",
+    title: "HBIM",
+    subtitle: "Historical Building Information Modeling with Rhino modeling, Revit Family assembly, and Grasshopper roof-tile generation.",
+    category: "BIM Project",
+    categorySlug: "bim",
+    group: "featured",
+    order: 5,
+    role: "BIM Modeler / Computational Designer",
+    tools: ["Rhino 3D", "Revit Family", "Grasshopper", "HBIM"],
+    summary: "전통 건축 부재 모델링과 기와 자동 생성 알고리즘을 결합한 HBIM 프로젝트입니다.",
+    overview: "HBIM 프로젝트는 전통 건축 부재를 Rhino로 모델링하고 Revit Family로 조립하며, Grasshopper를 활용해 기와 생성 과정을 자동화한 Historical BIM 작업입니다.",
+    problem: "전통 건축 부재는 반복 요소가 많고 형상이 복잡해 수작업 모델링만으로는 시간과 정확도 관리가 어렵습니다.",
+    solution: "주요 부재는 Rhino와 Revit Family로 체계화하고, 반복적인 기와 배열은 Grasshopper 알고리즘으로 생성해 모델링 효율을 높였습니다.",
+    contribution: "전통 건축 부재 모델링, Revit Family 조립 전략, Grasshopper 기반 기와 자동 생성 알고리즘 구성을 담당했습니다.",
+    features: [
+      "전통 건축 부재를 Rhino에서 정밀 모델링",
+      "Revit Family 기반 조립형 HBIM 모델 구축",
+      "Grasshopper로 기와 배열 자동 생성",
+      "역사 건축 요소를 BIM 정보 구조로 전환"
+    ],
+    impact: "반복 부재 모델링 시간을 줄이고, 전통 건축의 형상과 정보 구조를 함께 다루는 HBIM 제작 방식을 실험했습니다.",
+    images: [
+      { src: "images/projects/pdf-page-25.webp", alt: "HBIM Rhino Grasshopper and Revit family workflow" },
+      { src: "images/projects/pdf-page-24.webp", alt: "HBIM historical building information modeling overview" }
+    ]
+  },
+  {
+    id: "kinetic-void",
+    title: "Kinetic Void",
+    subtitle: "A campus architectural project that reinterprets underused voids as shared space.",
+    category: "Architectural Project",
+    categorySlug: "architecture",
+    group: "archive",
+    order: 1,
+    role: "Architectural Designer",
+    tools: ["AutoCAD", "Rhino 3D", "Photoshop", "Diagramming"],
+    summary: "학교의 비어 있는 공간을 공유공간으로 재해석한 건축 프로젝트입니다.",
+    overview: "Kinetic Void는 학교 안의 비어 있는 공간을 재발견하고 Green Facade, Void, Passive System을 통해 공유공간으로 전환한 설계 프로젝트입니다.",
+    problem: "기존 학교 공간의 빈 영역은 동선과 프로그램 사이에서 활용도가 낮고, 학생들이 머무는 장소로 기능하지 못했습니다.",
+    solution: "Void를 중심으로 층별 프로그램과 녹화 입면, 수동 환경 시스템을 결합해 개방성과 체류성을 동시에 확보했습니다.",
+    contribution: "공간 콘셉트, 평면과 단면 계획, Green Facade 다이어그램, Passive System 설명 자료를 구성했습니다.",
+    features: [
+      "학교의 빈 공간을 공유 프로그램으로 전환",
+      "Green Facade와 Void를 결합한 환경 전략",
+      "Floor Plan과 Section을 통한 공간 흐름 정리",
+      "Passive System 중심의 설계 다이어그램"
+    ],
+    impact: "건축 설계 단계에서 공간 문제를 읽고 프로그램, 환경 전략, 표현 도구로 설득하는 기반 역량을 보여주는 프로젝트입니다.",
+    images: [
+      { src: "images/projects/pdf-page-09.webp", alt: "Kinetic Void rendering views" },
+      { src: "images/projects/pdf-page-08.webp", alt: "Kinetic Void floor plan section and elevation" },
+      { src: "images/projects/pdf-page-06.webp", alt: "Kinetic Void concept and mass process" },
+      { src: "images/projects/pdf-page-04.webp", alt: "Kinetic Void project cover page" }
+    ]
+  },
+  {
+    id: "modernized-traditional-architecture",
+    title: "전통건축의 현대화",
+    subtitle: "A modern house design reinterpreting the spatial experience of Korean traditional architecture.",
+    category: "Architectural Project",
+    categorySlug: "architecture",
+    group: "archive",
+    order: 2,
+    role: "Architectural Designer",
+    tools: ["AutoCAD", "Rhino 3D", "Photoshop", "Model Study"],
+    summary: "한국 전통건축의 공간 경험을 현대 주택으로 재해석했습니다.",
+    overview: "전통건축의 현대화는 중정, 큰 창, 노출콘크리트, 내부에서 바라보는 풍경의 개념을 현대 주택 설계로 옮긴 프로젝트입니다.",
+    problem: "전통 건축의 정서와 현대적 생활 방식 사이의 간극을 공간 구성과 재료 언어로 조율해야 했습니다.",
+    solution: "중정을 중심으로 내부와 외부의 시선을 조절하고, 큰 창과 노출콘크리트를 통해 전통적 공간 경험을 현대적으로 재구성했습니다.",
+    contribution: "공간 콘셉트 설정, 주거 프로그램 배치, 재료 이미지 정리, 내부에서 바라보는 풍경 중심의 장면 구성을 수행했습니다.",
+    features: [
+      "중정을 중심으로 한 내외부 관계 구성",
+      "큰 창을 통한 풍경 프레이밍",
+      "노출콘크리트로 현대적 재료감 표현",
+      "전통 건축의 경험을 현대 주거 시퀀스로 재해석"
+    ],
+    impact: "건축적 경험을 현대적 형태와 재료로 번역하는 설계 사고를 보여주는 작업입니다.",
+    images: [
+      { src: "images/projects/pdf-page-12.webp", alt: "Modernized traditional architecture perspective and mass diagram" },
+      { src: "images/projects/pdf-page-13.webp", alt: "Modernized traditional architecture floor plan and section" },
+      { src: "images/projects/pdf-page-11.webp", alt: "Modernized traditional architecture overview" }
+    ]
+  },
+  {
+    id: "contact-with-the-ground",
+    title: "Contact with the ground",
+    subtitle: "A Dokdo guesthouse competition proposal using the island's terrain as the core design condition.",
+    category: "Architectural Project",
+    categorySlug: "architecture",
+    group: "archive",
+    order: 3,
+    role: "Architectural Designer",
+    tools: ["Rhino 3D", "AutoCAD", "Photoshop", "Site Analysis"],
+    summary: "독도의 지형적 특성을 활용한 게스트하우스 디자인 공모전 프로젝트입니다.",
+    overview: "Contact with the ground는 독도의 지형과 장소성을 보존하면서 대지와 접촉하는 방식을 설계 언어로 발전시킨 게스트하우스 공모전 프로젝트입니다.",
+    problem: "특수한 장소인 독도에서 건축물이 지형을 훼손하지 않으면서도 방문자에게 강한 장소 경험을 제공해야 했습니다.",
+    solution: "대지에 가볍게 접촉하는 배치와 지형을 따라 흐르는 동선을 통해 지형 보존과 체험적 공간을 동시에 고려했습니다.",
+    contribution: "대지 분석, 매스 스터디, 게스트하우스 프로그램 배치, 지형과 접촉하는 단면 개념을 정리했습니다.",
+    features: [
+      "독도 지형을 기반으로 한 배치 전략",
+      "대지와 접촉하는 방식에 대한 단면적 설계",
+      "지형 보존을 고려한 건축 접근",
+      "특수 장소 경험을 강화하는 동선 구성"
+    ],
+    impact: "건축물이 대지와 맺는 관계를 분석하고, 장소성이 강한 설계 개념으로 발전시킨 프로젝트입니다.",
+    images: [
+      { src: "images/projects/pdf-page-15.webp", alt: "Contact with the ground Dokdo guesthouse overview" },
+      { src: "images/projects/pdf-page-16.webp", alt: "Contact with the ground site analysis concept and model" }
+    ]
+  },
+  {
+    id: "seven-branches-seongnam",
+    title: "7 branches in Seongnam",
+    subtitle: "A museum project interpreting Seongnam's urban formation as spatial branches.",
+    category: "Architectural Project",
+    categorySlug: "architecture",
+    group: "archive",
+    order: 4,
+    role: "Architectural Designer / Visualizer",
+    tools: ["Rhino 3D", "Enscape", "Photoshop", "Urban Diagram"],
+    summary: "성남의 도시 생성 흐름을 박물관 공간으로 해석한 프로젝트입니다.",
+    overview: "7 branches in Seongnam은 성남의 도시 생성 흐름을 일곱 개의 가지로 해석하고, 이를 박물관 공간과 전시 동선으로 발전시킨 설계 프로젝트입니다.",
+    problem: "도시의 역사와 성장 흐름을 단순한 전시 콘텐츠가 아니라 공간 구조 자체로 표현해야 했습니다.",
+    solution: "도시 생성의 방향성과 분기를 Rhino 모델링으로 구조화하고, Enscape 렌더링과 Photoshop 리터치로 공간 이미지를 완성했습니다.",
+    contribution: "도시 분석 다이어그램, Rhino 모델링, Enscape 렌더링, Photoshop 리터치와 프레젠테이션 이미지 제작을 담당했습니다.",
+    features: [
+      "성남의 도시 생성 흐름을 공간 가지로 해석",
+      "Rhino 기반 매스 및 공간 모델링",
+      "Enscape 렌더링과 Photoshop 리터치",
+      "도시 서사를 박물관 동선으로 전환"
+    ],
+    impact: "도시 분석, 3D 모델링, 시각화 도구를 연결해 설계 서사를 전달한 작업입니다.",
+    images: [
+      { src: "images/projects/pdf-page-18.webp", alt: "7 branches in Seongnam main view" },
+      { src: "images/projects/pdf-page-17.webp", alt: "7 branches in Seongnam competition overview" }
+    ]
+  },
+  {
+    id: "crossing-transferium",
+    title: "Crossing Transferium",
+    subtitle: "A BIM-based complex transfer parking design project with front loading, IPD, and computational facade studies.",
+    category: "BIM Project",
+    categorySlug: "bim",
+    group: "archive",
+    order: 5,
+    role: "BIM Designer",
+    tools: ["Revit", "Rhino 3D", "Grasshopper", "Lumion", "BIM Server", "Clash Detective", "Simulation"],
+    summary: "BIM 기반 복합 환승 주차장 설계와 분석, 협업 프로세스를 수행했습니다.",
+    overview: "Crossing Transferium은 복합 환승 주차장 설계를 BIM 기반으로 진행한 프로젝트로, Front Loading System, IPD, BIM Map, Mass Study, Solar Energy Analysis, Grasshopper facade를 통합했습니다.",
+    problem: "복합 교통 시설은 설계 초기 단계부터 프로그램, 동선, 구조, 환경 분석, 협업 정보를 동시에 관리해야 합니다.",
+    solution: "Revit과 BIM Server를 중심으로 모델 정보를 관리하고, Rhino와 Grasshopper로 매스 및 파사드 스터디를 수행하며, Clash Detective와 Simulation을 통해 검토 흐름을 구성했습니다.",
+    contribution: "BIM Map 구성, Mass Study, Grasshopper facade 생성, Solar Energy Analysis, Revit 모델링과 시각화 자료 제작에 참여했습니다.",
+    features: [
+      "Front Loading System과 IPD 기반 설계 프로세스",
+      "BIM Map을 통한 정보 흐름 정리",
+      "Grasshopper facade와 Mass Study",
+      "Solar Energy Analysis, Clash Detective, Simulation 활용"
+    ],
+    impact: "설계 초기 의사결정과 BIM 협업, 환경 분석, 시각화를 연결한 BIM 프로젝트 경험을 보여줍니다.",
+    images: [
+      { src: "images/projects/pdf-page-20.webp", alt: "Crossing Transferium main view" },
+      { src: "images/projects/pdf-page-22.webp", alt: "Crossing Transferium mass study BIM map and solar analysis" },
+      { src: "images/projects/pdf-page-23.webp", alt: "Crossing Transferium BIM server clash detective and simulation" },
+      { src: "images/projects/pdf-page-19.webp", alt: "Crossing Transferium BIM project overview" }
+    ]
+  },
+  {
+    id: "level-checker",
+    title: "Level Checker",
+    subtitle: "A Revit add-in for visually reviewing levels and category-based elements inside a project.",
+    category: "Revit Add-in",
+    categorySlug: "addin",
+    group: "archive",
+    order: 6,
+    role: "Add-in Developer",
+    tools: ["C#", "Revit API", "WPF", "Element Filtering"],
+    summary: "Revit 프로젝트의 레벨과 카테고리 항목을 시각적으로 확인하는 Add-in입니다.",
+    overview: "Level Checker는 Revit 프로젝트 안의 레벨과 카테고리 항목을 빠르게 확인하고, 더블 클릭으로 관련 요소를 필터링하거나 시각화하는 Add-in입니다.",
+    problem: "모델 검토 중 특정 레벨이나 카테고리에 포함된 요소를 빠르게 확인하려면 뷰 설정과 필터링을 반복해야 했습니다.",
+    solution: "레벨과 카테고리 목록을 UI로 보여주고, 사용자가 항목을 더블 클릭하면 관련 요소를 빠르게 필터링해 검토 흐름을 단축했습니다.",
+    contribution: "레벨 및 카테고리 데이터 추출, 목록 UI, 더블 클릭 이벤트, 관련 요소 필터링과 시각화 로직을 구현했습니다.",
+    features: [
+      "프로젝트 레벨 목록 시각화",
+      "카테고리별 요소 탐색",
+      "더블 클릭 기반 관련 요소 필터링",
+      "검토 대상 요소를 빠르게 파악하는 UI"
+    ],
+    impact: "모델 내부 요소를 탐색하는 시간을 줄이고, 검토자가 레벨과 카테고리 기준으로 모델 상태를 빠르게 이해하도록 돕습니다.",
+    images: [
+      { src: "images/projects/pdf-page-35.webp", alt: "Level Checker Revit add-in page" }
+    ]
+  }
+];
