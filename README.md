@@ -51,3 +51,22 @@ npm run dev
 ```powershell
 npm run build
 ```
+
+## GitHub Pages 배포
+
+이 프로젝트는 Vite가 `src/` 코드를 정적 파일로 빌드한 뒤, GitHub Pages가 `dist/` 결과물을 서빙하는 방식입니다. 루트 `index.html`을 브라우저에서 직접 여는 방식이 아니라, 빌드된 HTML/CSS/JS를 배포합니다.
+
+배포 방식:
+
+1. GitHub 저장소 Settings > Pages로 이동합니다.
+2. Build and deployment의 Source를 `GitHub Actions`로 설정합니다.
+3. 변경 사항을 `main` 브랜치에 push합니다.
+4. `.github/workflows/deploy.yml`이 `npm ci`, `npm run build`를 실행하고 `dist/`를 GitHub Pages에 배포합니다.
+
+배포 후 주소는 보통 아래 형식입니다.
+
+```text
+https://jnhuo-dev.github.io/
+```
+
+`dist/`는 빌드 산출물이므로 커밋하지 않습니다. 실제 수정은 `src/data`, `src/assets`, `src/components`, `src/pages`에서 하고, GitHub Actions가 배포 파일을 자동 생성합니다.
