@@ -1,0 +1,23 @@
+:root {
+  /* 책상 위에 놓인 도면 한 장 */
+  --desk: #e8e6e0;
+  --paper: #fbfaf7;
+  --white: #ffffff;
+
+  --ink: #1d1d1b;
+  --ink-2: #4a4945;
+  --ink-3: #85837d;
+  --rule: #d9d6ce;
+  --hover: #efede7;
+
+  /* 레드라인(수정 표시)에서 따온 포인트 색. 원래 PDF 포트폴리오의 빨강과 맞춤 */
+  --red: #c4302b;
+
+  --font: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  --gutter: clamp(16px, 3vw, 40px);
+  --line: 1px solid var(--rule);
+  --line-ink: 1px solid var(--ink);
+  --line-bold: 1.5px solid var(--ink);
+}
