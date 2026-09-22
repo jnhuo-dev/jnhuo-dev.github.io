@@ -16,6 +16,12 @@ declare module "virtual:content" {
     height?: number;
   };
 
+  export type Video = {
+    /** 재생용 유튜브 주소 */
+    src: string;
+    label: string;
+  };
+
   export type ProjectLink = {
     label: string;
     url: string;
@@ -37,7 +43,11 @@ declare module "virtual:content" {
     draft: boolean;
     cover?: Figure;
     figures: Figure[];
+    /** links에 들어 있는 유튜브 영상 (본문에 이미 넣은 영상은 제외) */
+    videos: Video[];
     html: string;
+    /** 본문이 길면 글 읽기 중심 레이아웃 */
+    long: boolean;
     links: ProjectLink[];
   };
 

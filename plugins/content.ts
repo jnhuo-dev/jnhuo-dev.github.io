@@ -12,7 +12,7 @@ import { imageSize } from "image-size";
 import { Marked } from "marked";
 import { parse as parseYaml } from "yaml";
 import type { Plugin } from "vite";
-import type { Category, Entry, Figure, Profile, Project, ProjectLink } from "virtual:content";
+import type { Category, Entry, Figure, Profile, Project, ProjectLink, Video } from "virtual:content";
 
 const VIRTUAL_ID = "virtual:content";
 const RESOLVED_ID = `\0${VIRTUAL_ID}`;
@@ -30,8 +30,13 @@ const PROJECT_KEYS = [
   "title", "category", "year", "type", "role", "tools", "summary", "award",
   "featured", "draft", "order", "cover", "captions", "links",
 ];
+const TEMPLATE_TITLE = "작업 이름";
+const TEMPLATE_SUMMARY = "목록과 미리보기에 나오는 한 줄 설명";
+// 본문이 이보다 길면(공백 제외 글자 수) 글 읽기 중심 레이아웃을 쓴다.
+const LONG_TEXT = 1500;
+
 const PROFILE_KEYS = [
-  "name", "nameEn", "role", "intro", "email", "github", "contactNote",
+  "name", "nameEn", "role", "intro", "description", "email", "github", "contactNote",
   "career", "education", "experience", "certificates", "awards", "skills",
 ];
 
@@ -72,6 +77,18 @@ export default function contentPlugin(): Plugin {
         if (error instanceof ContentError) this.error(error.message);
         throw error;
       }
+    },
+    // 페이지 제목과 링크 미리보기(카톡·링크드인·검색) 문구를 소개 파일에서 가져와 index.html에 넣는다.
+    transformIndexHtml() {
+      const meta = readSiteMeta(root);
+      const title = escapeHtml(meta.title);
+      const description = escapeHtml(meta.description);
+      return [
+        { tag: "title", children: title, injectTo: "head-prepend" },
+        { tag: "meta", attrs: { name: "description", content: description }, injectTo: "head" },
+        { tag: "meta", attrs: { property: "og:title", content: title }, injectTo: "head" },
+        { tag: "meta", attrs: { property: "og:description", content: description }, injectTo: "head" },
+      ];
     },
     configureServer(server) {
       const contentDir = path.join(root, "content");
@@ -153,18 +170,40 @@ function loadProjects(ctx: Ctx, dir: string): Project[] {
     const draft = asBool(data.draft);
     if (draft && ctx.isBuild) continue;
 
+    // 템플릿 문구를 그대로 두고 배포하는 것을 막는다.
+    if (!draft) {
+      if (title === TEMPLATE_TITLE) fail(ctx, file, `title이 템플릿 문구("${TEMPLATE_TITLE}") 그대로입니다.`);
+      if (optionalString(data.summary) === TEMPLATE_SUMMARY) {
+        fail(ctx, file, `summary가 템플릿 문구("${TEMPLATE_SUMMARY}") 그대로입니다. 한 줄 설명을 쓰거나 줄을 지워주세요.`);
+      }
+    }
+
     const images = listImages(folder);
     const usedInBody = new Set<string>();
-    const html = renderMarkdown(ctx, file, folder, images, body, usedInBody);
+    const videosInBody = new Set<string>();
+    const html = renderMarkdown(ctx, file, folder, images, body, usedInBody, videosInBody);
 
+    const links = asLinks(ctx, file, data.links);
+    const videos: Video[] = [];
+    for (const link of links) {
+      const video = youtube(link.url);
+      if (video && !videosInBody.has(video.id) && !videos.some((v) => v.src === video.src)) {
+        videos.push({ src: video.src, label: link.label });
+      }
+    }
+
+    // 캡션은 확장자가 달라도(image-01.jpg ↔ image-01.png) 같은 이름이면 연결한다.
     const captions = asStringMap(ctx, file, data.captions, "captions");
     for (const name of Object.keys(captions)) {
-      if (!matchImage(images, name)) ctx.warn(`${relPath(ctx, file)}: captions의 "${name}" 이미지를 폴더에서 찾을 수 없습니다.`);
+      if (!matchImage(images, stripExt(name))) ctx.warn(`${relPath(ctx, file)}: captions의 "${name}" 이미지를 폴더에서 찾을 수 없습니다.`);
     }
+    const captionFor = (name: string) =>
+      captions[name] ??
+      Object.entries(captions).find(([key]) => stripExt(key).toLowerCase() === stripExt(name).toLowerCase())?.[1];
     const figure = (name: string): Figure => ({
       src: imageToken(ctx, path.join(folder, name)),
       name,
-      caption: captions[name] ?? captions[stripExt(name)],
+      caption: captionFor(name),
       ...measure(path.join(folder, name)),
     });
 
@@ -191,8 +230,10 @@ function loadProjects(ctx: Ctx, dir: string): Project[] {
       draft,
       cover: coverName ? figure(coverName) : undefined,
       figures: images.filter((name) => name !== coverName && !usedInBody.has(name)).map(figure),
+      videos,
       html,
-      links: asLinks(ctx, file, data.links),
+      long: html.replace(/<[^>]+>/g, "").replace(/\s+/g, "").length > LONG_TEXT,
+      links,
       sortYear: Math.max(...years.map(Number)),
       order: optionalString(data.order) ? Number(data.order) || 0 : Number.MAX_SAFE_INTEGER,
     });
@@ -232,7 +273,7 @@ function loadProfile(ctx: Ctx, dir: string): Profile {
     github: optionalString(data.github),
     contactNote: optionalString(data.contactNote),
     photo: photo ? imageToken(ctx, path.join(dir, photo)) : undefined,
-    html: renderMarkdown(ctx, file, dir, images, body, new Set()),
+    html: renderMarkdown(ctx, file, dir, images, body, new Set(), new Set()),
     career: asEntries(ctx, file, data.career, "career"),
     education: asEntries(ctx, file, data.education, "education"),
     experience: asEntries(ctx, file, data.experience, "experience"),
@@ -245,6 +286,20 @@ function loadProfile(ctx: Ctx, dir: string): Profile {
   };
 }
 
+function readSiteMeta(root: string) {
+  const ctx: Ctx = { root, isBuild: false, imports: [], importIds: new Map(), warn: () => {} };
+  const file = findFile(path.join(root, "content", "profile"), "index.md");
+  if (!file) throw new ContentError(`[content] content/profile/index.md 파일이 필요합니다.`);
+
+  const { data } = readFrontmatter(ctx, file);
+  const name = requireString(ctx, file, data, "name", "이름");
+  const role = optionalString(data.role);
+  return {
+    title: role ? `${name} | ${role}` : name,
+    description: optionalString(data.description) ?? optionalString(data.intro) ?? "",
+  };
+}
+
 /* ───────── markdown ───────── */
 
 function renderMarkdown(
@@ -254,6 +309,7 @@ function renderMarkdown(
   images: string[],
   body: string,
   usedInBody: Set<string>,
+  videosInBody: Set<string>,
 ) {
   if (!body.trim()) return "";
 
@@ -261,6 +317,15 @@ function renderMarkdown(
   const marked = new Marked({ gfm: true });
   marked.use({
     renderer: {
+      // 유튜브 주소만 있는 줄은 그 자리에 영상 플레이어로 바꾼다.
+      paragraph({ tokens }) {
+        const parts = tokens.filter((token) => !(token.type === "text" && !token.raw.trim()));
+        const link = parts.length === 1 && parts[0].type === "link" ? parts[0] : undefined;
+        const video = link ? youtube(link.href) : undefined;
+        if (!video) return false;
+        videosInBody.add(video.id);
+        return `<div class="video"><iframe src="${escapeHtml(video.src)}" title="YouTube 영상" ${IFRAME_ATTRS}></iframe></div>\n`;
+      },
       image({ href, text }) {
         let src = href;
         if (!/^([a-z]+:|\/\/)/i.test(href)) {
@@ -286,6 +351,43 @@ function renderMarkdown(
   const html = marked.parse(body, { async: false });
   if (errors.length) fail(ctx, file, errors.join("\n  → "));
   return html;
+}
+
+/* ───────── youtube ───────── */
+
+const IFRAME_ATTRS =
+  'loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen';
+
+/** 유튜브 주소(youtu.be, watch?v=, shorts 등)를 재생용 주소로 바꾼다. 유튜브가 아니면 undefined. */
+function youtube(url: string) {
+  let parsed: URL;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return undefined;
+  }
+
+  const host = parsed.hostname.replace(/^(www\.|m\.|music\.)/, "");
+  let id: string | undefined;
+  if (host === "youtu.be") {
+    id = parsed.pathname.split("/")[1];
+  } else if (host === "youtube.com" || host === "youtube-nocookie.com") {
+    id = parsed.pathname === "/watch" ? parsed.searchParams.get("v") ?? undefined : parsed.pathname.match(/^\/(?:embed|shorts|live)\/([^/]+)/)?.[1];
+  }
+  if (!id || !/^[\w-]{11}$/.test(id)) return undefined;
+
+  const start = toSeconds(parsed.searchParams.get("t") ?? parsed.searchParams.get("start"));
+  // 쿠키를 남기지 않는 유튜브 주소를 쓴다.
+  return { id, src: `https://www.youtube-nocookie.com/embed/${id}${start ? `?start=${start}` : ""}` };
+}
+
+/** "90", "90s", "1m30s", "1h2m3s" → 초 */
+function toSeconds(value: string | null) {
+  if (!value) return 0;
+  if (/^\d+$/.test(value)) return Number(value);
+  const match = value.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/);
+  if (!match) return 0;
+  return Number(match[1] ?? 0) * 3600 + Number(match[2] ?? 0) * 60 + Number(match[3] ?? 0);
 }
 
 /* ───────── helpers ───────── */

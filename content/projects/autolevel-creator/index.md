@@ -6,7 +6,6 @@ summary: 서버에 저장된 현장별 레벨 정보로 Revit 레벨과 평면�
 type: Revit 애드인
 role: 기획 · 개발
 tools: [C#, Revit API]
-featured: true
 order: 3
 captions:
   cover.jpg: 레벨 및 뷰 생성 창(왼쪽)과 애드인으로 생성한 레벨(오른쪽)

@@ -6,7 +6,6 @@ summary: IFC로 내보내기 전에 ID 오류와 철골 보 레벨 오류를 잡
 type: Revit 애드인
 role: 개인 프로젝트
 tools: [C#, Revit API, WPF]
-featured: true
 order: 1
 captions:
   cover.jpg: ID Validation Checker(왼쪽)와 Steel Beam Level Validation Checker(오른쪽)
