@@ -536,6 +536,8 @@ a.tb__value:hover {
 
 .dwg__cover {
   grid-area: cover;
+  display: grid;
+  gap: 32px;
 }
 
 .dwg__notes {
@@ -554,8 +556,29 @@ a.tb__value:hover {
   border: var(--line-ink);
 }
 
+/* 작은 이미지(예: 프로그램 창 캡처)는 키우지 않고 도면 가운데에 둔다 */
 .fig__frame img {
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #111;
+}
+
+.video iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.prose .video {
+  margin: 1.4em 0;
+  border: var(--line-ink);
 }
 
 .fig figcaption {
@@ -700,7 +723,7 @@ a.tb__value:hover {
 }
 
 .inline-fig img {
-  width: 100%;
+  max-width: 100%;
   background: var(--white);
   border: var(--line-ink);
 }
@@ -710,6 +733,38 @@ a.tb__value:hover {
   padding-top: 6px;
   color: var(--ink-2);
   font-size: 0.84rem;
+}
+
+/* 긴 글: 본문을 읽기 좋은 폭으로 넓히고, 사양표는 오른쪽에 따라다니게 */
+.dwg__body--long {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+  grid-template-areas:
+    "cover spec"
+    "prose spec"
+    "figs spec";
+}
+
+.dwg__body--long .dwg__notes {
+  display: contents;
+}
+
+.dwg__body--long .spec {
+  grid-area: spec;
+  align-self: start;
+  position: sticky;
+  top: 16px;
+}
+
+.dwg__body--long .prose {
+  grid-area: prose;
+  max-width: 42em;
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.dwg__body--long .prose h2 {
+  margin-top: 2.6em;
+  font-size: 1.05rem;
 }
 
 .sheet-nav {
@@ -874,6 +929,20 @@ a.tb__value:hover {
   }
 
   .dwg__notes {
+    max-width: 44em;
+  }
+
+  .dwg__body--long {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "cover"
+      "spec"
+      "prose"
+      "figs";
+  }
+
+  .dwg__body--long .spec {
+    position: static;
     max-width: 44em;
   }
 

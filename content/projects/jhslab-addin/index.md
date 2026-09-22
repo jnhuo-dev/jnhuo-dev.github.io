@@ -1,7 +1,7 @@
 ---
 title: JHSLab Add-in
 category: development
-year: 2024
+year: 2023
 summary: 검토보고서 작성과 BIM 검토 업무를 돕는 Revit 도구 모음.
 type: Revit 애드인
 role: 기획 · 개발

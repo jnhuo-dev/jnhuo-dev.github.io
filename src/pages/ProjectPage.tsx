@@ -1,6 +1,7 @@
 import type { MouseEvent, ReactNode } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Fig from "../components/Fig";
+import VideoFig from "../components/VideoFig";
 import { categoryOf, findProject, neighbors, useDocumentTitle } from "../lib/content";
 
 export default function ProjectPage() {
@@ -50,14 +51,17 @@ export default function ProjectPage() {
         {project.summary ? <p className="dwg__lead">{project.summary}</p> : null}
       </header>
 
-      <div className="dwg__body">
-        {project.cover ? (
+      <div className={`dwg__body${project.long ? " dwg__body--long" : ""}`}>
+        {project.cover || project.videos.length > 0 ? (
           <div className="dwg__cover">
-            <Fig figure={project.cover} index={1} alt={project.title} eager />
+            {project.cover ? <Fig figure={project.cover} index={1} alt={project.title} eager /> : null}
+            {project.videos.map((video) => (
+              <VideoFig key={video.src} video={video} title={project.title} />
+            ))}
           </div>
         ) : null}
 
-        <aside className="dwg__notes">
+        <div className="dwg__notes">
           <dl className="spec">
             <SpecRow label="분류">{category.label}</SpecRow>
             {project.type ? <SpecRow label="유형">{project.type}</SpecRow> : null}
@@ -84,7 +88,7 @@ export default function ProjectPage() {
           {project.html ? (
             <div className="prose" onClick={onProseClick} dangerouslySetInnerHTML={{ __html: project.html }} />
           ) : null}
-        </aside>
+        </div>
 
         {project.figures.length > 0 || !project.cover ? (
           <div className="dwg__figs">
